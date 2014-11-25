@@ -1,4 +1,5 @@
   class LocationsController < ApplicationController
+  before_action :is_authenticated
   before_action :current_user
 
   #NEED TO NEST UNDER GROUPS

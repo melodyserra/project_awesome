@@ -1,4 +1,5 @@
 class UserController < ApplicationController
+  before_action :is_authenticated
   before_action :current_user
   def profile
     if @current_user
