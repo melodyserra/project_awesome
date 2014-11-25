@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  # before_action :is_authenticated
   before_action :current_user
 
   # edit_group GET /groups/:id/edit(.:format) groups#edit

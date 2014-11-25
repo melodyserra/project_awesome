@@ -1,14 +1,16 @@
 
+  <div id="user-nav">
+    <% if @current_user %>
+      <%= link_to root_path do %>
+      <%= image_tag(@current_user.image, :id => "nav-image") %> <%= @current_user.first_name %> <%= @current_user.last_name %>
+      <% end %>
 
-<div id="user_nav">
-  <% if @current_user %>
-    Signed in as <strong><%= @current_user.first_name %></strong>!
-    
-    <%= button_to('Sign out', signout_path, :class => 'btn btn-large btn-default', :method => :get, id: "sign_out2")  %> 
-  <% else %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-  <% end %>
-</div>
+      <%= button_to('Sign out', signout_path, :class => 'btn btn-large btn-default', :method => :get, id: "sign_out")  %>
+    <% else %>
+      <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+    <% end %>
+  </div>
+
 
 <!-- input to store group id to be passed to AJAX request -->
 <input type="hidden" id="group_id" data-path="<%= @group.id %>" name="group_id" value="taco">
