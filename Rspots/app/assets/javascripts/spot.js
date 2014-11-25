@@ -41,8 +41,15 @@ var setMarkers = function (locations,map){
     // ajax call to return reviews for each location
     $.when(get_location_reviews(group_id,location.id)).done(function(reviews){
 
-      location.reviews = reviews; // add reviews to location object
-      // console.log(location.reviews)
+
+location.reviews = reviews.map(function (single) {
+        if (single.rating === -1) {
+          single.rating = 0;
+        }
+        //console.log("a review", single);
+        return single;
+      }); // add reviews to location object
+            // console.log(location.reviews)
       var template_html = HandlebarsTemplates["review"](location); //passing location to hbs template
 
       var contentString = template_html; //adding template to content for infowindow

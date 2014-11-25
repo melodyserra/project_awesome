@@ -15,23 +15,28 @@
 <div class="review-box">
 {{#each reviews}}
   <p>
-    <img src="/assets/up.svg" alt="" height="25px" width="25px">
+{{#if rating}}
+  <img src="/assets/up.svg" alt="" height="25px" width="25px">
+  {{else}}
+  <img src="/assets/down.svg" alt="" height="25px" width="25px">
+{{/if}}
+
     {{review}}
   </p>
 {{/each}}
 </div>
 
 <form
-	class="hbs"
-	action="/groups/{{group_id}}/reviews"
-	method="POST">
+class="hbs"
+action="/groups/{{group_id}}/reviews"
+method="POST">
 
-	<input type="hidden" name="location_id" value="{{id}}">
-	<input type="hidden" name="authenticity_token" value="">
-  <label><input type="radio" name="rating" value="1"required> Try it!</label>
-  <label><input type="radio" name="rating" value="-1"required> Skip it!</label>
-  <input type="textarea" required name="review" >
-  <input type="submit" value="Save">
+<input type="hidden" name="location_id" value="{{id}}">
+<input type="hidden" name="authenticity_token" value="">
+  <label><input type="radio" name="rating" value="1"required>Try it!&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+  <label><input type="radio" name="rating" value="-1"required>Skip it</label>
+  <textarea rows="2" required name="review" class="review_text" placeholder="write a review"></textarea>
+  <input type="submit" value="Save" class="btn-info btn-xs">
 </form>
 
 
