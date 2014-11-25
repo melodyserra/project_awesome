@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :is_authenticated
+  # before_action :is_authenticated
   before_action :current_user
 
   def create
