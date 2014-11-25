@@ -42,30 +42,9 @@
 	font-family: 'Quicksand', sans-serif;	
 	margin-bottom: 50px;
 }
-
-.how h3 { 
-	letter-spacing: 1px; 
-	margin-bottom: 0; 
-	color: #0099FF;
-	font-family: 'Poiret One';
-	font-size: 250%;
-}
-
-.how {
-	width: 100%;
-} 
-
+ 
 #img1 {
 	width: 100%;
-}
-
-.getstarted h3 { 
-	letter-spacing: 1px; 
-	margin-bottom: 0; 
-	color: #0099FF;
-	font-family: 'Poiret One';
-	font-size: 250%;
-	margin-bottom: 20px;
 }
 
 #sign_in {
@@ -103,6 +82,16 @@
 	position:absolute;
 	top: 0;
 	right: 0;
+}
+
+a.btn {
+	margin: 10px;
+	display: block-inline;
+	background:none;
+	border: 1px solid black;
+	font-family: 'Quicksand', sans-serif;
+	padding:15px;
+	position:relative;
 }
 
 #sign_out2 {

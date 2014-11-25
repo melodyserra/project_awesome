@@ -13,5 +13,6 @@ class UserController < ApplicationController
     end
 
       @group = Group.new
+      id = params[:id]
   end #end profile route
 end

@@ -4,17 +4,6 @@
   <h1>spots</h1>
   <p class="about_us">A new way to visualize your circle's favorite spots around town</p>
 
-
-<!-- <div class="content">
-
-<div class="how" id="howitworks" role="article">
-      <h3>How it Works:</h3>
-      <div class="pictures">
-        <img src="/assets/img1.png" class="img-responsive" />
-      </div>
-</div>
- -->
-
   <div class="getstarted" id="start" role="article">
 
           <%= button_to('Sign in with Facebook', "/auth/facebook", :class => 'btn btn-large btn-primary', id: "sign_in")  %>
@@ -42,23 +31,24 @@
     <br>
 
       <div>
-        <a data-toggle='modal' data-target='#new-group-modal' class='btn btn-large btn-default'>Create New Group</a>
+        <a data-toggle='modal' data-target='#new-group-modal' class='btn btn-large btn-default' id='#new-group'>Create New Group</a>
       </div>
 
       <div class="col-md-6">
         <h4 class="g">Groups I Created:</h3>
 
         <% @groups_owned_by_current_user.each do |g| %>
-          <p class = "icon-row"><%= link_to g.name, group_map_path(g)%></p>
+          <div>
+            <p class = "icon-row"><%= link_to g.name, group_map_path(g)%></p>
 
-          <!-- Find if owner for leave or delete/edit -->
-          <%= link_to(edit_group_path(g)) do %>
-            <span class=" edit-icon glyphicon glyphicon-pencil" aria-hidden="true"></span>
-          <% end %>
+            <!-- Find if owner for leave or delete/edit -->
+            <a data-toggle='modal' data-target='#edit-group-modal<%= g.id %>'>
+            <span class=" edit-icon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 
-          <%= link_to(group_path(g), method: :delete, :data => {:confirm => 'Are you sure? Because you are the owner this will delete it for everyone...'}) do %>
-            <span class="delete-icon glyphicon glyphicon-remove" style = "color:red;" aria-hidden="true"></span>
-          <% end %>
+            <%= link_to(group_path(g), method: :delete, :data => {:confirm => 'Are you sure? Because you are the owner this will delete it for everyone...'}) do %>
+              <span class="delete-icon glyphicon glyphicon-remove" style = "color:red;" aria-hidden="true"></span>
+            <% end %>
+          </div>
 
         <% end %>
       </div>
@@ -67,12 +57,13 @@
         <h4 class="g">Groups I Belong To:</h3>
 
         <% @groups_not_owned_by_current_user.each do |g| %>
+          <div>
+            <p class="icon-row2"><%= link_to g.name, group_map_path(g)%></p>
 
-          <p class="icon-row2"><%= link_to g.name, group_map_path(g)%></p>
-
-           <%= link_to(leave_group_path(g), method: :delete, :data => {:confirm => 'Are you sure you want to leave this group?'}) do %>
-            <span class="leave-icon glyphicon glyphicon-trash" style = "color:red;" aria-hidden="true"></span>
-          <% end %>
+            <%= link_to(leave_group_path(g), method: :delete, :data => {:confirm => 'Are you sure you want to leave this group?'}) do %>
+              <span class="leave-icon glyphicon glyphicon-trash" style = "color:red;" aria-hidden="true"></span>
+            <% end %>
+          </div>
          
         <% end %>
       </div>
@@ -113,3 +104,38 @@
   </div><!-- /.modal-dialog -->
   <% end %>
 </div><!-- /.modal -->
+
+<% @groups_owned_by_current_user.each do |g| %>
+<div id="edit-group-modal<%= g.id %>" class="modal fade">
+  <%= form_for(g, url: group_path(g.id), method: :put) do |f| %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Edit a Group</h4>
+      </div>
+      <div class="modal-body">
+          <p>
+            <%= f.label :name %><br>
+            <%= f.text_field :name, class: "form-control" %>
+          </p>
+
+            <p>
+            <%= f.label :lat %><br>
+            <%= f.text_field :lat, class: "form-control" %>
+          </p>
+
+            <p>
+            <%= f.label :lng %><br>
+            <%= f.text_field :lng, class: "form-control" %>
+          </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  <% end %>
+</div><!-- /.modal -->
+<% end %>
