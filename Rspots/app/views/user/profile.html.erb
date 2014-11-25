@@ -41,8 +41,10 @@
     <hr id="divider"> <!-- adding space and line before create new group -->
     <br>
 
-      <%= button_to('Create New Group', new_group_path, :class => 'btn btn-large btn-default', :method => :get, id: "create")  %>
-  
+      <div>
+        <a data-toggle='modal' data-target='#new-group-modal' class='btn btn-large btn-default'>Create New Group</a>
+      </div>
+
       <div class="col-md-6">
         <h4 class="g">Groups I Created:</h3>
 
@@ -78,3 +80,36 @@
     </div>
   </div>
 <% end %>
+
+<div id="new-group-modal" class="modal fade">
+  <%= form_for @group do |f| %>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Create a New Group</h4>
+      </div>
+      <div class="modal-body">
+          <p>
+            <%= f.label :name %><br>
+            <%= f.text_field :name, class: "form-control" %>
+          </p>
+
+            <p>
+            <%= f.label :lat %><br>
+            <%= f.text_field :lat, class: "form-control" %>
+          </p>
+
+            <p>
+            <%= f.label :lng %><br>
+            <%= f.text_field :lng, class: "form-control" %>
+          </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  <% end %>
+</div><!-- /.modal -->

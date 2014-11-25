@@ -105,6 +105,17 @@
 	right: 0;
 }
 
+#sign_out2 {
+	padding: 1px;
+	background:none;
+	border: 1px solid black;
+	font-family: 'Quicksand', sans-serif;
+	position:absolute;
+	top: 0;
+	right: 0;
+	margin-bottom: 20px;
+}
+
 /*.title {
 	font-family: 'Quicksand', sans-serif;
 	font-size: 20px;
@@ -127,13 +138,16 @@
 
 .icon-row{
 	display: inline-block;
-	width: 35px;
+	/*width: 35px;*/
+	width: 130px;
 	margin-right: 15px;
 }
 
 .icon-row2{
 	display: inline-block;
 	width: 130px;
+	/*width: 35px;*/
+	margin-right: 15px;
 }
 
 .edit-icon {

@@ -11,5 +11,7 @@ class UserController < ApplicationController
       @groups_owned_by_current_user = groups[0]
       @groups_not_owned_by_current_user = groups[1]
     end
+
+      @group = Group.new
   end #end profile route
 end
